@@ -1,20 +1,20 @@
-# AlgoViz - Sorting Algorithm Visualizer
+# AlgoViz - Algorithm & Data Structure Visualizer
 
-AlgoViz is an interactive web application that visualizes various sorting algorithms to help users understand how they work. Built with Next.js and Tailwind CSS, this application provides a modern and intuitive interface for exploring sorting algorithms.
+AlgoViz is an interactive web application that visualizes various sorting algorithms and data structures to help users understand how they work. Built with Next.js and Tailwind CSS, this application provides a modern and intuitive interface for exploring algorithms and data structures.
 
 ![AlgoViz Screenshot](src/public/Screenshot.png)
 
 ## Features
 
-- **Interactive Visualization**: Watch sorting algorithms in action with customizable array sizes and speeds
-- **Multiple Algorithms**: Visualize and compare different sorting algorithms:
-  - Bubble Sort
-  - Selection Sort
-  - Insertion Sort
-  - Merge Sort
-  - Quick Sort
-  - And more!
-- **Educational Content**: Learn about the time and space complexity of each algorithm
+- **Interactive Visualization**: 
+  - Watch sorting algorithms in action with customizable array sizes and speeds
+  - Explore data structures like binary trees, heaps, and hash tables with interactive operations
+  
+- **Multiple Algorithms & Data Structures**:
+  - **Sorting Algorithms**: Bubble Sort, Selection Sort, Insertion Sort, Merge Sort, Quick Sort, and more
+  - **Data Structures**: Binary Trees (with traversals), Heaps (with operations), Hash Tables (with collision handling)
+  
+- **Educational Content**: Learn about the time and space complexity of each algorithm and data structure
 - **Responsive Design**: Works on desktop and mobile devices
 
 ## Getting Started
@@ -47,8 +47,8 @@ AlgoViz is an interactive web application that visualizes various sorting algori
 ## Usage
 
 1. **Home Page**: Navigate to different sections of the application
-2. **Visualizer**: Select an algorithm, adjust the array size and speed, then click "Start Sorting" to see the algorithm in action
-3. **Learn**: Read about different sorting algorithms and their characteristics
+2. **Visualizer**: Select an algorithm or data structure, adjust the parameters and speed, then click "Start" to see it in action
+3. **Learn**: Read about different sorting algorithms and data structures, and their characteristics
 
 ## Technologies Used
 
