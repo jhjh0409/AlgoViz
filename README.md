@@ -2,7 +2,7 @@
 
 AlgoViz is an interactive web application that visualizes various sorting algorithms to help users understand how they work. Built with Next.js and Tailwind CSS, this application provides a modern and intuitive interface for exploring sorting algorithms.
 
-![AlgoViz Screenshot](https://via.placeholder.com/800x400?text=AlgoViz+Screenshot)
+![AlgoViz Screenshot](src/public/Screenshot.png)
 
 ## Features
 
