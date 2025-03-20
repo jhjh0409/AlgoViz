@@ -11,7 +11,7 @@ interface Node {
   highlighted?: boolean;
   visited?: boolean;
   distance?: number;
-  predecessor?: string | undefined;
+  predecessor?: string | null | undefined;
 }
 
 interface Edge {
