@@ -42,10 +42,10 @@ const HashTableViz = () => {
   }, [hashTable.table]);
   
   // Simple hash function
-  const hashFunction = (key: string): number => {
+  const hashFunction = (key: string, tableSize: number): number => {
     let hash = 0;
     for (let i = 0; i < key.length; i++) {
-      hash = (hash + key.charCodeAt(i) * (i + 1)) % hashTable.size;
+      hash = (hash + key.charCodeAt(i) * (i + 1)) % tableSize;
     }
     return hash;
   };
@@ -57,7 +57,7 @@ const HashTableViz = () => {
     setAnimationInProgress(true);
     setOperationLog([`Inserting key "${keyInput}" with value "${valueInput}"...`]);
     
-    const hash = hashFunction(keyInput);
+    const hash = hashFunction(keyInput, hashTable.size);
     setOperationLog(prev => [...prev, `Hash value for key "${keyInput}" is ${hash}`]);
     
     const newTable = [...hashTable.table];
@@ -108,7 +108,7 @@ const HashTableViz = () => {
     setSearchResult(null);
     setOperationLog([`Searching for key "${searchInput}"...`]);
     
-    const hash = hashFunction(searchInput);
+    const hash = hashFunction(searchInput, hashTable.size);
     setOperationLog(prev => [...prev, `Hash value for key "${searchInput}" is ${hash}`]);
     
     // Highlight the bucket
@@ -144,7 +144,7 @@ const HashTableViz = () => {
     setSearchResult(null);
     setOperationLog([`Deleting key "${searchInput}"...`]);
     
-    const hash = hashFunction(searchInput);
+    const hash = hashFunction(searchInput, hashTable.size);
     setOperationLog(prev => [...prev, `Hash value for key "${searchInput}" is ${hash}`]);
     
     // Highlight the bucket
@@ -206,7 +206,7 @@ const HashTableViz = () => {
     
     // Reinsert all entries
     for (const entry of allEntries) {
-      const hash = hashFunction(entry.key) % newSize;
+      const hash = hashFunction(entry.key, newSize);
       
       if (newTable[hash] === null) {
         newTable[hash] = [{ key: entry.key, value: entry.value }];
@@ -254,6 +254,72 @@ const HashTableViz = () => {
       ...prev,
       table: newTable
     }));
+  };
+  
+  // Add sample data
+  const addSampleData = () => {
+    if (animationInProgress) return;
+    
+    setAnimationInProgress(true);
+    setOperationLog([`Adding sample data...`]);
+    
+    const sampleData = [
+      { key: 'apple', value: 'fruit' },
+      { key: 'banana', value: 'fruit' },
+      { key: 'carrot', value: 'vegetable' },
+      { key: 'dog', value: 'animal' },
+      { key: 'elephant', value: 'animal' },
+      { key: 'frog', value: 'amphibian' },
+      { key: 'guitar', value: 'instrument' },
+    ];
+    
+    const newTable = [...hashTable.table];
+    let newCollisions = hashTable.collisions;
+    
+    sampleData.forEach(({ key, value }) => {
+      const hash = hashFunction(key, hashTable.size);
+      
+      if (newTable[hash] === null) {
+        newTable[hash] = [{ key, value }];
+      } else {
+        // Check if key already exists
+        const existingIndex = newTable[hash]!.findIndex(entry => entry.key === key);
+        
+        if (existingIndex >= 0) {
+          newTable[hash]![existingIndex] = { key, value };
+        } else {
+          newTable[hash]!.push({ key, value });
+          newCollisions++;
+        }
+      }
+    });
+    
+    setHashTable(prev => ({
+      ...prev,
+      table: newTable,
+      collisions: newCollisions
+    }));
+    
+    setOperationLog(prev => [...prev, `Sample data added successfully.`]);
+    setAnimationInProgress(false);
+  };
+  
+  // Clear the hash table
+  const clearTable = () => {
+    if (animationInProgress) return;
+    
+    setAnimationInProgress(true);
+    setOperationLog([`Clearing hash table...`]);
+    
+    setHashTable({
+      size: hashTable.size,
+      table: Array(hashTable.size).fill(null),
+      collisions: 0,
+      loadFactor: 0
+    });
+    
+    setOperationLog(prev => [...prev, `Hash table cleared.`]);
+    setAnimationInProgress(false);
   };
   
   return (
@@ -324,6 +390,23 @@ const HashTableViz = () => {
                 Delete
               </button>
             </div>
+          </div>
+          
+          <div className="grid grid-cols-2 gap-2 mb-4">
+            <button
+              onClick={addSampleData}
+              className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700"
+              disabled={animationInProgress}
+            >
+              Add Sample Data
+            </button>
+            <button
+              onClick={clearTable}
+              className="bg-gray-600 text-white px-4 py-2 rounded-md hover:bg-gray-700"
+              disabled={animationInProgress}
+            >
+              Clear Table
+            </button>
           </div>
           
           <div className="mb-4">

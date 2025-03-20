@@ -1,6 +1,4 @@
 {
   "/page": "app/page.js",
-  "/visualizer/page": "app/visualizer/page.js",
-  "/data-structures/page": "app/data-structures/page.js",
-  "/learn/page": "app/learn/page.js"
+  "/data-structures/page": "app/data-structures/page.js"
 }
