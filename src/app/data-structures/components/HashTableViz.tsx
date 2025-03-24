@@ -229,31 +229,35 @@ const HashTableViz = () => {
   
   // Highlight a specific bucket
   const highlightBucket = async (index: number) => {
-    const newTable = [...hashTable.table];
-    
-    if (newTable[index] !== null) {
-      newTable[index] = newTable[index]!.map(entry => ({ ...entry, highlighted: true }));
-    }
-    
-    setHashTable(prev => ({
-      ...prev,
-      table: newTable
-    }));
+    setHashTable(prev => {
+      const newTable = [...prev.table];
+      
+      if (newTable[index] !== null) {
+        newTable[index] = newTable[index]!.map(entry => ({ ...entry, highlighted: true }));
+      }
+      
+      return {
+        ...prev,
+        table: newTable
+      };
+    });
     
     await new Promise(resolve => setTimeout(resolve, 500));
   };
   
   // Reset all highlights
   const resetHighlights = async () => {
-    const newTable = hashTable.table.map(bucket => {
-      if (bucket === null) return null;
-      return bucket.map(entry => ({ ...entry, highlighted: false }));
+    setHashTable(prev => {
+      const newTable = prev.table.map(bucket => {
+        if (bucket === null) return null;
+        return bucket.map(entry => ({ ...entry, highlighted: false }));
+      });
+      
+      return {
+        ...prev,
+        table: newTable
+      };
     });
-    
-    setHashTable(prev => ({
-      ...prev,
-      table: newTable
-    }));
   };
   
   // Add sample data
