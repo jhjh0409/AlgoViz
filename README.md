@@ -2,6 +2,8 @@
 
 AlgoViz is an interactive web application that visualizes various sorting algorithms and data structures to help users understand how they work. Built with Next.js and Tailwind CSS, this application provides a modern and intuitive interface for exploring algorithms and data structures.
 
+Deployed at https://algo-viz-flame.vercel.app/
+
 ![AlgoViz Screenshot](src/public/Screenshot.png)
 
 ## Features
@@ -12,7 +14,14 @@ AlgoViz is an interactive web application that visualizes various sorting algori
   
 - **Multiple Algorithms & Data Structures**:
   - **Sorting Algorithms**: Bubble Sort, Selection Sort, Insertion Sort, Merge Sort, Quick Sort, and more
-  - **Data Structures**: Binary Trees (with traversals), Heaps (with operations), Hash Tables (with collision handling)
+  - **Data Structures**:
+    - Binary Trees (with traversals)
+    - Heaps (with operations)
+    - Hash Tables (with collision handling)
+    - Graphs (with various traversal algorithms)
+    - Stacks (with push, pop, and peek operations)
+    - Queues (with enqueue, dequeue operations)
+    - Linked Lists (with insert, delete, and traversal)
   
 - **Educational Content**: Learn about the time and space complexity of each algorithm and data structure
 - **Responsive Design**: Works on desktop and mobile devices

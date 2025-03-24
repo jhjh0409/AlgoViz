@@ -6,6 +6,8 @@ import BinaryTreeViz from './components/BinaryTreeViz';
 import HeapViz from './components/HeapViz';
 import HashTableViz from './components/HashTableViz';
 import GraphViz from './components/GraphViz';
+import StackViz from './components/StackViz';
+import QueueViz from './components/QueueViz';
 
 export default function DataStructures() {
   const [selectedStructure, setSelectedStructure] = useState<string>('binary-tree');
@@ -46,6 +48,18 @@ export default function DataStructures() {
             >
               Graph
             </button>
+            <button
+              className={`px-4 py-2 rounded-md ${selectedStructure === 'stack' ? 'bg-indigo-600 text-white' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}
+              onClick={() => setSelectedStructure('stack')}
+            >
+              Stack
+            </button>
+            <button
+              className={`px-4 py-2 rounded-md ${selectedStructure === 'queue' ? 'bg-indigo-600 text-white' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}
+              onClick={() => setSelectedStructure('queue')}
+            >
+              Queue
+            </button>
           </div>
           
           <div className="text-gray-700 text-sm">
@@ -64,6 +78,12 @@ export default function DataStructures() {
             {selectedStructure === 'graph' && (
               <p>Graphs: Create nodes and edges, run graph traversal algorithms (DFS, BFS, Dijkstra's), and visualize the results.</p>
             )}
+            {selectedStructure === 'stack' && (
+              <p>Stacks: Push and pop elements, and visualize the stack operations.</p>
+            )}
+            {selectedStructure === 'queue' && (
+              <p>Queues: Enqueue and dequeue elements, and visualize the queue operations.</p>
+            )}
           </div>
         </div>
         
@@ -72,6 +92,8 @@ export default function DataStructures() {
           {selectedStructure === 'heap' && <HeapViz />}
           {selectedStructure === 'hash-table' && <HashTableViz />}
           {selectedStructure === 'graph' && <GraphViz />}
+          {selectedStructure === 'stack' && <StackViz />}
+          {selectedStructure === 'queue' && <QueueViz />}
         </div>
       </div>
     </div>
